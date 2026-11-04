@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5ef">
+  <title>Vierblick — Ein Bild. Vier Perspektiven.</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Vierblick Startseite">
+      <span class="brand-icon"><i></i><i></i><i></i><i></i></span>vierblick<span class="brand-dot">.</span>
+    </a>
+    <span class="mode"><span></span> LOKALER SPIELMODUS</span>
+    <button class="text-button" id="rules">ⓘ <span>So funktioniert’s</span></button>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <div class="eyebrow">VIER KÖPFE. EIN GEMEINSAMES BILD.</div>
+        <h1>Du siehst nur ein Viertel.<br><span>Zusammen seht ihr mehr.</span></h1>
+        <p>Beschreibt eure Ausschnitte, vergleicht die Details und findet<br class="desktop"> gemeinsam das richtige Bild unter acht Möglichkeiten.</p>
+      </div>
+      <div class="intro-art" aria-hidden="true">
+        <span class="art-cross">✳</span>
+        <span class="art-label">Der Unterschied<br>steckt im Detail.</span>
+        <span class="art-arrow">↙</span>
+      </div>
+    </section>
+
+    <div class="roundbar">
+      <div>
+        <span class="live-dot"></span>
+        <strong id="round-label">Runde 01</strong>
+        <span class="divider"></span>
+        <span>Ein Nachmittag im Park</span>
+      </div>
+      <div class="round-actions">
+        <span id="timer" aria-label="Verstrichene Zeit">00:00</span>
+        <button class="text-button" id="new-round">↻ Neue Runde</button>
+      </div>
+    </div>
+
+    <div class="game-layout">
+      <section class="perspective panel" aria-labelledby="perspective-title">
+        <div class="section-heading">
+          <div>
+            <span class="step">01</span>
+            <h2 id="perspective-title">Deine Perspektive</h2>
+          </div>
+          <span class="small-label">1 VON 4</span>
+        </div>
+        <div class="player-bar">
+          <div class="avatar" id="avatar">1</div>
+          <div>
+            <strong id="player-name">Spieler:in 1</strong>
+            <span id="quarter-name">Oben links</span>
+          </div>
+          <div class="quadrant-map" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="crop-frame" id="crop-frame">
+          <div id="crop"></div>
+          <button id="visibility" class="visibility">◉ Ausschnitt verbergen</button>
+          <div class="hidden-crop" id="hidden-crop" hidden>
+            <span>✦</span>
+            <strong>Deine Perspektive wartet.</strong>
+            <p>Bereit? Zeige deinen Ausschnitt.</p>
+            <button id="show-crop" class="primary">Ausschnitt anzeigen</button>
+          </div>
+        </div>
+        <div class="player-navigation">
+          <button class="arrow" id="previous-player" aria-label="Vorherige Person">←</button>
+          <div>
+            <strong id="player-position">Perspektive 1 / 4</strong>
+            <span>Wechsle mit den Pfeilen zwischen euch.</span>
+          </div>
+          <button class="arrow" id="next-player" aria-label="Nächste Person">→</button>
+        </div>
+        <div class="tip">
+          <span>✧</span>
+          <p><strong>Reden ist euer Superpower.</strong><br>Welche Farben, Formen und Größen fallen dir auf?</p>
+        </div>
+      </section>
+
+      <section class="choices panel" aria-labelledby="choices-title">
+        <div class="section-heading">
+          <div>
+            <span class="step">02</span>
+            <h2 id="choices-title">Welches Bild ist es?</h2>
+          </div>
+          <span class="small-label">8 MÖGLICHKEITEN</span>
+        </div>
+        <p class="section-description">Fast gleich. Aber nur eines passt zu allen vier Ausschnitten.</p>
+        <div class="candidate-grid" id="candidates" role="group" aria-label="Acht mögliche Bilder"></div>
+        <div class="choice-footer">
+          <p id="selection-status" aria-live="polite">Einigt euch auf ein Bild.</p>
+          <button class="primary" id="submit" disabled>Auswahl bestätigen <span>↗</span></button>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <span><b>✳</b> Ein Viertel für dich. Ein Ganzes für euch.</span>
+      <span>4 Personen <i>·</i> 8 Bilder <i>·</i> 1 Lösung</span>
+    </footer>
+  </main>
+
+  <dialog id="rules-dialog">
+    <button class="close" aria-label="Schließen">×</button>
+    <span class="eyebrow">ZUSAMMEN GENAU HINSEHEN</span>
+    <h2>Vier Perspektiven. Eine Lösung.</h2>
+    <p>Ihr seht vier Viertel desselben geheimen Bildes. Jede Person merkt sich ihren Ausschnitt und beschreibt ihn den anderen.</p>
+    <ol>
+      <li>Wechselt mit <strong>← und →</strong> oder den Pfeilbuttons zwischen den vier Personen. Mit der Leertaste könnt ihr den Ausschnitt verdecken, bevor ihr das Gerät weitergebt.</li>
+      <li>Vergleicht eure Beobachtungen mit den acht vollständigen Bildern. Achtet auf die Sonne, den Sonnenschirm, den Ball und die Blumen.</li>
+      <li>Wählt gemeinsam einen Kandidaten und bestätigt eure Antwort. Ein falscher Tipp lässt euch weiterspielen.</li>
+    </ol>
+    <p class="muted">Lokaler Prototyp: Alle Perspektiven sind auf diesem Gerät erreichbar. Die Zeit läuft ohne Limit.</p>
+    <button class="primary close-rules">Los geht’s</button>
+  </dialog>
+
+  <dialog id="result-dialog">
+    <button class="close" aria-label="Schließen">×</button>
+    <div id="result-content"></div>
+  </dialog>
+</body>
+</html>
